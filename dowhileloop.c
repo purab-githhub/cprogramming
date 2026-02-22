@@ -1,6 +1,6 @@
 /*to generate a multiplication table using do whileloop */
 #include <stdio.h>
-void mmain(){
+int main(){
     int prdt=1,num;
     printf("enter users choice:");
     scanf("%d",&num);
@@ -9,5 +9,5 @@ void mmain(){
         printf("%d*%d",num,prdt,num*prdt);
         prdt++;
     } while (prdt<=12);
-    
+    return 0;
 }
