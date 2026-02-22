@@ -29,7 +29,19 @@ int main()
 
         // Take user input
         printf("Enter your choice: ");   //this will ask the user to enter the choice 
-        scanf("%d", &user);
+        // Input validation
+        if(scanf("%d", &user) != 1)
+        {
+            printf("Invalid input! Enter 0, 1, or 2 only.\n");
+            while(getchar() != '\n');  // clear buffer
+            continue;
+        }
+
+        if(user < 0 || user > 2)
+        {
+            printf("Invalid choice! Enter 0, 1, or 2 only.\n");
+            continue;
+        }
 
         // Generate computer choice (0–2)
         computer = rand() % 3;   /* rand % will help the computer input to get random choice to perform the game i have used here the (%3) because after division by 3 
