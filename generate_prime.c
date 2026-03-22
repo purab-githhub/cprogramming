@@ -31,8 +31,8 @@ void main (){
             prime_numbers[prime_index]=p_holdingnum;
             ++prime_index;
         }
-                 for ( i = 0;  i < primeIndex;  ++i )
-         printf ("%i  ", primes[i]);
+                 for ( i = 0;  i < prime_index;  ++i )
+         printf ("%i  ", prime_numbers[i]);
 
     printf("\n");
     
