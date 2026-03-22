@@ -21,9 +21,9 @@ void main (){
         //abh baas mein shuru mein check kara diya ke joo bhi numbers mere pe mein hai shuru mmein prime numbers hai  
         //abh ise checck karne ke baare 
         //divide karwaunga ek prime number se
-        for (i=0; isPrime && p_holdingnum/prime_numbers[i]>=prime_numbers[i];i++);{
+        for (i=0; isPrime && p_holdingnum/prime_numbers[i]>=prime_numbers[i];i++){
             if (p_holdingnum%prime_numbers[i]==0)
-                isPrime=false;
+                isPrime=false;}
             if(isPrime==true){
 
             
@@ -31,14 +31,13 @@ void main (){
             prime_numbers[prime_index]=p_holdingnum;
             ++prime_index;
         }
+    }
                  for ( i = 0;  i < prime_index;  ++i )
          printf ("%i  ", prime_numbers[i]);
-
+    
     printf("\n");
     
 
             
         }
-    }
-
-}
+    
