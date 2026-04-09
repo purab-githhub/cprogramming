@@ -11,14 +11,14 @@ void main (){
     printf("Even numbers:");
     for(i=0;i<num;i++){
         if(a[i]%2==0){
-            printf("%d",a[i]);
+            printf("%d ",a[i]);
         }
         
     }
     printf("Odd numbers:");
     for(i=0;i<num;i++){
         if(a[i]%2!=0){
-            printf("%d",a[i]);
+            printf("%d ",a[i]);
         }
 
     }
