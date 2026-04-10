@@ -23,7 +23,7 @@ void main (){
         printf("enter the subjects of the students:");
         scanf("%d%d%d",&arr[i].m1,&arr[i].m2,&arr[i].m3);
         arr[i].total=arr[i].m1+arr[i].m2+arr[i].m3;
-        arr[i].percentage=arr[i].m1+arr[i].m2+arr[i].m3/3;
+        arr[i].percentage=arr[i].total/3.0;
     }
   printf("\nStudent Result:\n");
 
