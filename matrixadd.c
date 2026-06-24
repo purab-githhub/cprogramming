@@ -37,5 +37,6 @@ void summitation(int matA[][3], int matB[][3], int sum[][3]){
         printf("\n");
     
 }
+}
        
     
