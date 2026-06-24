@@ -8,7 +8,7 @@ void fact(){
     int num;
     printf("enter the number:");
     scanf("%d",&num);
-    for(i=0;i<5;i++){
+    for(i=1;i<=5;i++){
         factt=factt*i;
     }
     printf("%d",factt);
