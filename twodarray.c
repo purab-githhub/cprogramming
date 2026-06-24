@@ -8,15 +8,18 @@ void main (){
     scanf("%d",&rows);
     printf("Enter the column:");
     scanf("%d",&columns);
+    printf("Enter the array elemnts");
     for (i=0;i<rows;i++){
         for(j=0;j<columns;j++){
-            printf("Enter the array elemnts");
+       
             scanf("%d",&my_array[i][j]);
         }
     }
     for (i=0;i<rows;i++){
         for(j=0;j<columns;j++){
-            printf("print the array : %d\n",my_array[i][j]);
+            printf(" %d",my_array[i][j]);
 
     }
+    printf("\n");
+}
 }
