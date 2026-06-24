@@ -31,7 +31,7 @@ void summitation(int matA[][3], int matB[][3], int sum[][3]){
         printf("summitation print karna hain :\n");
            for (i=0;i<3;i++){
         for (j=0;j<3;j++){
-            printf("%d",sum[i][j]);
+            printf("%d\t",sum[i][j]);
 
         }
         printf("\n");
