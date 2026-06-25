@@ -25,7 +25,7 @@ void largest(int arry[],int num){
     1.largest ko assign karenge hum first index jise shuru mein compare tho kar sakeh 
     2.phir for loop laga ke arry[i]> larg check karteh rehnge aur larg ko update karteh 
     rahenge*/
-    larg=a[0];//dediya first element
+    larg=arry[0];//dediya first element
     //abh lagega for loop eacch an every elemt ko access karna hain na 
     for (i=0;i<num;i++){
         //if lagage ke every element ko larg se compare karteh hain 
