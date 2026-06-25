@@ -4,7 +4,7 @@ void main (){
     int arry[5],i;
     printf("enter the array elements:");
     for (i=0;i<5;i++){
-        scanf("%d",arry[i]);
+        scanf("%d",&arry[i]);
     }
     //array elements lega abb bass function ko call karna hain
     reverse(arry,5);
