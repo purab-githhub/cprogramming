@@ -30,7 +30,7 @@ void bubble(int arry[],int num){
         //abh hum print karenge na 
         printf("print the bubble sorted elements:");
         for(i=0;i<num;i++){
-            printf("%d\t",arry[j]);
+            printf("%d\t",arry[i]);
         }
 
     
