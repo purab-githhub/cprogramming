@@ -32,7 +32,7 @@ void struc(struct struc s[],int num){
     printf("student details");
     int i;
     for (i=0;i<num;i++){
-        printf("students name : %d\n",s[i].name);
-        printf("students age : %s\n",s[i].age);
+        printf("students name : %s\n",s[i].name);
+        printf("students age : %d\n",s[i].age);
     }
 }
