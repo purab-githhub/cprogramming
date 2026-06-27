@@ -37,7 +37,7 @@ void main (){
 
     for(i=0;i<3;i++){
         printf("PRN no:%d\n",s1[i].prn);
-        pritnf("student school name:%s\n",s1[i].college);
+        printf("student school name:%s\n",s1[i].college);
         printf("name of the studdent:%s\n",s1[i].name);
 
         
