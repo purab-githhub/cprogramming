@@ -30,7 +30,7 @@ void closetnum(int n, int m){
     //for loop lagate hain kyuki starting value lower nibble takh jaega matlab n-abs(m)
     //and ending hum n+abs(m) takh lelete hain 
 
-    for (i=n+abs(m);i<=n+abs(m);++i){
+    for (i=n-abs(m);i<=n+abs(m);++i){
         //abh chech karenge ke i divisble hain kya nahi m se
         if (i%m==0){
             //abh calculate karenge distance
