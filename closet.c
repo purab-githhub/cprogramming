@@ -42,9 +42,10 @@ void closetnum(int n, int m){
            if(difference<diff || (difference==diff && abs(i)>abs(closet)))  {
             closet=i;
             diff=difference;
-            
+
            }
 
         }
     }
+    printf("%d",closet);
 }
