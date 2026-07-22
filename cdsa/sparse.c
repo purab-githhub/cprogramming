@@ -81,7 +81,7 @@ void main (){
     int i;
 
     // Function call
-    matirx(a, b);
+    matrix(a, b);
 
     printf("Transpose in Triplet Form:\n");
     printf("Row\tColumn\tValue\n");
