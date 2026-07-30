@@ -106,7 +106,7 @@ void binarysearch(struct mystru s1[], int n, int low, int high, int key)
 
         if(key == s1[mid].marks)
         {
-            printf("Marks Found : %d\n", s1[mid].marks);
+            printf("Marks Found : %f\n", s1[mid].marks);
             printf("Found at student position : %d\n", mid + 1);
             printf("the student name is:%s",s1[mid].name);
             return;//we beed here return 
