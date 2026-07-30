@@ -73,10 +73,62 @@ void sequentialsearch(struct mystru s1[50],int n,int target){
 }
 
 
-void bubblesort()
+void bubblesort(struct mystru s1[50],int n){
+    int i,j;
+    //lets take a temporary variable 
+    struct mystru tempvariable;
+    //we will apply looping iteration
+    //for to get the access of the whole elements and the largest element is to the end n-1
+    for(i=0;i<n-1;i++){
+        //looping iteration is needed 
+        for(j=0;j<n-i-1;j++){
+            //now we will compare the adjacent two indexes
+            if(s1[j].marks>s1[j+1].marks){
+                //now we have to swap
+                s1[j]=tempvariable;
+                s1[j]=s1[j+1];
+                s1[j+1]=tempvariable;
+
+
+            }
+        }
+    }
+}
+
+//reccurive code iam writting
+void binarysearch(struct mystru s1[], int n, int low, int high, int key)
+{
+    int mid;
+
+    while(low <= high)
+    {
+        mid = (low + high) / 2;
+
+        if(key == s1[mid].marks)
+        {
+            printf("Marks Found : %d\n", s1[mid].marks);
+            printf("Found at student position : %d\n", mid + 1);
+            printf("the student name is:%s",s1[mid].name);
+            return;//we beed here return 
+        }
+        else if(key < s1[mid].marks)//checking is normal
+        {
+            high = mid - 1;
+        }
+        else
+        {
+            low = mid + 1;
+        }
+    }
+
+    printf("Marks not found\n");//i missed this part after everything we have to check for result if not found
+}
+
+
 int main (){
     int n;
     struct mystru s1[50];
+
     
     int target ;
     printf("enter the size:");
@@ -88,9 +140,31 @@ int main (){
     display(s1,n);
     printf("enter the target to be found for roll no:");
     scanf("%d",&target);
-    sequentialsearch(s1,n,target);
+    int low=0;
     
+    int high=n-1 ;
     
+    int key;
+    printf("enter the key to be found for marks:");
+    scanf("%d",&key);
+    int choice;
+    printf("enter the choice for the switch case:");
+    scanf("%d",&choice);
+    bubblesort( s1,n);
+    switch(choice){
+    case 1:
+    sequentialsearch( s1,n,target);
+    break;
+    case 2:
+    bubblesort( s1,n);
+    binarysearch(s1,  n, low, high, key);
+    break;
 
+
+
+    
+    
+    
+    }
 }
 
