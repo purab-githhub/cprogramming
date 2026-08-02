@@ -123,7 +123,33 @@ void binarysearch(struct mystru s1[], int n, int low, int high, int key)
 
     printf("Marks not found\n");//i missed this part after everything we have to check for result if not found
 }
-
+void selectionsort(struct mystru s1[], int n){
+    int minpos;
+    //in selection sort
+    //everything works on sorting and unsorting of data as subarry
+    //we will calculate the min pos so we need to get the looping iteration to 
+    //n-2 from 0 couz we checck or swap the first index and the smallest elemennt in the arry
+    int i,j;
+    for(i=0;i<n-2;i++){
+        //now we have to assign the the first element as the minpos
+        minpos=i; // index 0 is the minpos 
+        //now we will cchecck each an every element only the unsorted array must be check
+        //loop will work til n-1
+        for(j=1;j<n-1;j++){
+            //compare to get the smallest element in the unsorted subarray
+            if(s1[j].marks<s1[minpos].marks){
+                //as i want to get the smallest element right
+                minpos=j; 
+            }
+        }
+        if(minpos!=i){
+            //now we will swap
+            int temporary = s1[i].marks;
+            s1[i].marks=s1[i+1].marks;
+            s1[i+1].marks=temporary;
+        }
+    }
+}
 
 int main (){
     int n;
@@ -159,6 +185,9 @@ int main (){
     bubblesort( s1,n);
     binarysearch(s1,  n, low, high, key);
     break;
+    case 3:
+        selectionsort(s1,  n);
+        break;
 
 
 
