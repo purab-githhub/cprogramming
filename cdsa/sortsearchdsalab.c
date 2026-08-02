@@ -85,7 +85,7 @@ void bubblesort(struct mystru s1[50],int n){
             //now we will compare the adjacent two indexes
             if(s1[j].marks>s1[j+1].marks){
                 //now we have to swap
-                s1[j]=tempvariable;
+                tempvariable=s1[j];
                 s1[j]=s1[j+1];
                 s1[j+1]=tempvariable;
 
@@ -124,29 +124,18 @@ void binarysearch(struct mystru s1[], int n, int low, int high, int key)
     printf("Marks not found\n");//i missed this part after everything we have to check for result if not found
 }
 void selectionsort(struct mystru s1[], int n){
-    int minpos;
-    //in selection sort
-    //everything works on sorting and unsorting of data as subarry
-    //we will calculate the min pos so we need to get the looping iteration to 
-    //n-2 from 0 couz we checck or swap the first index and the smallest elemennt in the arry
-    int i,j;
-    for(i=0;i<n-2;i++){
-        //now we have to assign the the first element as the minpos
-        minpos=i; // index 0 is the minpos 
-        //now we will cchecck each an every element only the unsorted array must be check
-        //loop will work til n-1
-        for(j=1;j<n-1;j++){
-            //compare to get the smallest element in the unsorted subarray
-            if(s1[j].marks<s1[minpos].marks){
-                //as i want to get the smallest element right
-                minpos=j; 
+    int i, j, minpos;
+    for(i = 0; i < n - 1; i++){
+        minpos = i;
+        for(j = i + 1; j < n; j++){
+            if(s1[j].marks < s1[minpos].marks){
+                minpos = j;
             }
         }
-        if(minpos!=i){
-            //now we will swap
-            int temporary = s1[i].marks;
-            s1[i].marks=s1[i+1].marks;
-            s1[i+1].marks=temporary;
+        if(minpos != i){
+            struct mystru temporary = s1[i];
+            s1[i] = s1[minpos];
+            s1[minpos] = temporary;
         }
     }
 }
@@ -156,7 +145,7 @@ int main (){
     struct mystru s1[50];
 
     
-    int target ;
+   
     printf("enter the size:");
     scanf("%d",&n);
     
@@ -164,29 +153,33 @@ int main (){
 
     accept(s1,n);
     display(s1,n);
-    printf("enter the target to be found for roll no:");
-    scanf("%d",&target);
+   
     int low=0;
     
     int high=n-1 ;
     
-    int key;
-    printf("enter the key to be found for marks:");
-    scanf("%d",&key);
+   
     int choice;
     printf("enter the choice for the switch case:");
     scanf("%d",&choice);
     bubblesort( s1,n);
     switch(choice){
     case 1:
+     int target ;
+      printf("enter the target to be found for roll no:");
+    scanf("%d",&target);
     sequentialsearch( s1,n,target);
     break;
     case 2:
+     float key;
+    printf("enter the key to be found for marks:");
+    scanf("%f",&key);
     bubblesort( s1,n);
     binarysearch(s1,  n, low, high, key);
     break;
     case 3:
-        selectionsort(s1,  n);
+        selectionsort(s1, n);
+        display(s1, n);
         break;
 
 
