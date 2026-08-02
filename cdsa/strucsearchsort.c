@@ -125,6 +125,8 @@ printf("target is not there");
 }
 }
 
+
+
 int main()
 {
     int n;
