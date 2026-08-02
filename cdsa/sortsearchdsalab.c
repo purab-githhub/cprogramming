@@ -88,6 +88,7 @@ void bubblesort(struct mystru s1[50],int n){
                 tempvariable=s1[j];
                 s1[j]=s1[j+1];
                 s1[j+1]=tempvariable;
+                
 
 
             }
