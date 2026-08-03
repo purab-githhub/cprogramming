@@ -162,6 +162,47 @@ void insertionsort(struct mystru s1[], int n){
 }
 
 
+//lets come with the shell sort
+/*as we know in insertion sorting it takes many iterations sometimes to get the
+temp variable to its right place in the sorted sublist array */
+/*so instead of this what we do is we compare the unsorted list with the sorted one
+with the gap and the gap always lowers the number of iterations*/
+
+void shellsort(struct mystru s1[], int n)
+{
+    int gap;
+    int swapped;
+    int i;
+
+    gap = n / 2;
+
+    do
+    {
+        do
+        {
+            swapped = 0;
+
+            for(i = 0; i < n - gap; i++)
+            {
+                if(s1[i].marks > s1[i + gap].marks)
+                {
+                    struct mystru temp;
+
+                    temp = s1[i];
+                    s1[i] = s1[i + gap];
+                    s1[i + gap] = temp;
+
+                    swapped = 1;
+                }
+            }
+
+        } while(swapped == 1);
+
+        gap = gap / 2;
+
+    } while(gap >= 1);
+}
+
 int main (){
     int n;
     struct mystru s1[50];
@@ -207,7 +248,14 @@ int main (){
         insertionsort(s1,n);
         display(s1,n);
         break;
+    case 5:
+        shellsort(s1, n);
+        display(s1, n);
+        break;
 
+    case 6:
+        insertionsort(s1,n);
+        display(s1,n);
 
 
     
