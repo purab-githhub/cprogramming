@@ -125,6 +125,29 @@ printf("target is not there");
 }
 }
 
+//lets do insertion sorting
+//what we will need a tempvariable to store and and get a appropiatiate place into the
+//the sorted array sublists
+void insertionsort(struct myarrystruct s1[], int n){
+    struct myarrystruct  temp_variable;
+    //we need a forloop from the index 1 to size of the structure of the ary
+    //as we know in insertion sorting the index0 element is always sorted
+    int i,j;
+    for(i=1;i<n;i++){
+        //now we have to store index i valur to the tempvariable
+        temp_variable=s1[i];
+        j=i-1; //as we know we have to compare it with the sorted sublist 
+        while(j>0 && s1[j].marks>temp_variable.marks){
+            s1[j+1]=s1[j];
+            j--;// as the sorted index should move to index  0 to get the comparison done
+
+        }
+        s1[j+1]=temp_variable;
+
+    }
+}
+
+
 
 
 int main()
