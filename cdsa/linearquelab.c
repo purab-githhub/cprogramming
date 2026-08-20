@@ -43,7 +43,7 @@ void ADDQ(struct que ele){
 {
     rear=rear+1;
     q[rear]=ele;
-    printf("job added successfully");
+    printf("job added successfully\n");
 }
 }
 
