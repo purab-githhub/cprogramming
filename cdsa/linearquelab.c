@@ -1,7 +1,7 @@
 //lets first define the the size of the queue
 #include <stdio.h>
 #include <string.h>
-#define size 5
+#define size 3
 
 //now lets do with the structure creation
 struct que
@@ -69,7 +69,7 @@ void display(){
     }
     else
     {
-    for(i=front;i<rear;i++){
+    for(i=front;i<=rear;i++){
         printf("%d\n",q[i].jobid);
         printf("%s\n",q[i].tittle);
     }
