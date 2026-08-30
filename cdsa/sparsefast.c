@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <string.h>
+
 void accept(int a[20][20], int row, int col);
 void display(int a[20][20], int row, int col);
 void compactmat(int a[20][20], int row, int col, int cm[20][20]);
