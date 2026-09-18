@@ -47,7 +47,7 @@ void display(int result){
     if(  result== -1){
         printf("element is not found ");
     }else{
-        printf("ement is found at %d",result);
+        printf("element is found at %d",result);
     }
 
 }

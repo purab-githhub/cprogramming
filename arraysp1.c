@@ -11,7 +11,7 @@ int main(){
 
     for (i=0;i<10;i++)
     {
-        printf("arrays[%i]=%i\n",i,arrays[i]);
+        printf("%d %d\n",i,arrays[i]);
     }
 
     return 0;
