@@ -92,6 +92,36 @@ void display(struct node *H)
     }
 }
 
+//finding the length of the list
+
+void lenlist(struct node *H){
+    struct node *curr;
+    //suppose lets thik 
+    /*head->101->102->103->null*/
+    /*you just need to count 101 102 103 total len is 3
+    right 
+    for counting you know that temp is the node which is the 
+    list and curr is for the futre linked list or something
+    i can say is next node 
+    so on which variable we must count the linked list 
+    obviously curr as it is will help to check to things firstly 
+    the null of the list 
+    and also idd student is there it will count */
+    int i=0;
+    //why one step of the head couz we dont want the head to be 
+    //counted as it is null
+    curr=H->next;
+    //on what condition must be the loop will worrk 
+    //unitl the node is null right 
+    while (curr!=NULL){
+        i++;
+        //move to the next node
+        curr=curr->next;
+    }
+    printf("the node are :%d",i);
+
+}
+
 int main()
 {
     struct node *head;
@@ -100,7 +130,7 @@ int main()
     head=(struct node *)malloc(sizeof(struct node));
     head->next=NULL;
     //node size memory area for the header
-
+    do{
     printf("enter the choice:");
     scanf("%d",&choice);
 
@@ -113,8 +143,10 @@ int main()
         case 2:
             display(head);
             break;
+        case 3:
+            lenlist(head);
     }
-
+    }while(choice!=3);
     free(head);
     return 0;
 }
