@@ -4,7 +4,8 @@
 
 
 
-
+//in a node it has twoo things one is the data and other one is 
+//the linking system 
 struct node
 {
     int regno;
@@ -13,29 +14,46 @@ struct node
 };
 
 /*creation of single linked list*/
-void create(struct node **H)
+void create(struct node *H)
 {
     struct node *temp, *curr;
     char choice;
-    temp=H;
+    temp=H;/*temp we assign to head couz we can link the node to the next node
+    */
 
     //now we have to repeat it until choice y
     //we need do while loop
     do
     {
         //allocate memory to curr
+        //dynamically allocation is done through malloc 
         //we have to use malloc over here for memory allocation
+        
+        
         curr=(struct node *)malloc(sizeof(struct node));
+        
+        
+        //surr will be the next node in the linked list
+        //give me some enough memory to store struct node,
 
         //now we have to accept the data to the current
         printf("enter the registration no:");
+
+        //we are entering the node values
         scanf("%d",&curr->regno);
 
         printf("enter name:");
         scanf("%s",curr->name);
 
-        curr->next=NULL;
+        
+        curr->next=NULL;//the last successor//acting as head->next = null
+       
+        //temp is linked means header is linked to the first newnode 
+        //then temp == curr then first node to second new node is linked
         temp->next=curr;
+         /*means after the new node is added the temp should go
+        to that new node couz if another new node is added we to
+        link it with the previous new node*/
         temp=curr;
 
         //read choice
@@ -58,11 +76,13 @@ void display(struct node *H)
     else
     {
         //for the head node values
-        curr=H->next;
+        curr=H->next;//from here start the perfect linked list to set the elements
 
         //to continue printing we have to check the curr if not being null
         //and to get each element or node
-        while(curr!=NULL)
+        while(curr!=NULL)//this moves to the end of the linked list
+        //it keeps on printing the nodes if its present once the 
+        //the current is null stop 
         {
             printf("registration number is %d",curr->regno);
             printf("name of the student is %s",curr->name);
@@ -79,6 +99,7 @@ int main()
 
     head=(struct node *)malloc(sizeof(struct node));
     head->next=NULL;
+    //node size memory area for the header
 
     printf("enter the choice:");
     scanf("%d",&choice);
