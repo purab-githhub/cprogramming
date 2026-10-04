@@ -85,8 +85,9 @@ void display(struct node *H)
         //the current is null stop 
         {
             printf("registration number is %d",curr->regno);
-            printf("name of the student is %s",curr->name);
-            printf("next node points to %p",(void *)curr->next);
+            printf("name of the student is %s\n",curr->name);
+            printf("next node points to %p\n",(void *)curr->next);
+            printf("\n");
             curr=curr->next;
         }
     }
@@ -94,7 +95,7 @@ void display(struct node *H)
 
 //finding the length of the list
 
-void lenlist(struct node *H){
+int lenlist(struct node *H){
     struct node *curr;
     //suppose lets thik 
     /*head->101->102->103->null*/
@@ -118,9 +119,143 @@ void lenlist(struct node *H){
         //move to the next node
         curr=curr->next;
     }
-    printf("the node are :%d",i);
+    return i;
 
 }
+
+//lets add a new node
+void newnode(struct node *H){
+    //we need a creation of new node
+    struct node *nnode;
+    struct node *curr;
+    //now we have to insert it somewhere we need to have position 
+    int pos;
+    int i=1;//couz i have to start from the very first node
+    //intialize curr
+    curr =H->next;
+    int k;
+    k=lenlist(H);
+    //lets get the position and the new node
+      nnode = (struct node *)malloc(sizeof(struct node));
+    printf("enter the new node regno:");
+    scanf("%d",&nnode->regno);
+    printf("enter the new node student name :");
+    scanf("%s",nnode->name);
+    printf("enter the position:");
+    scanf("%d",&pos);
+
+    if(pos>k+1){
+        //if the pos i entered is more then the linked list
+        //it will not work 
+        printf("data cant be inserted");
+    }else{
+        while(curr!=NULL && i<pos){
+            i++; //i was having the first node
+            //then it updates to 2
+            curr = curr->next ;//the A next will have the address of 
+            //the node B
+
+        }
+        nnode->next=curr->next;//now will point to B
+        curr->next=nnode;//a of next will point to address of new node
+
+    }
+
+}
+//deletion of the node
+void delnode(struct node *H){
+    struct node *curr;
+    struct node *prev;
+    //need prev to point the head
+    prev=H;
+    //need one variable which help to free the element from the memory
+    struct node *del;
+    int ctr=1;//control or tracking of the node
+    int pos;
+    printf("enter the position to delete:");
+    scanf("%d",&pos);
+    
+    //to take the input of the pos to delete the node
+    int k;//to get the len of the linked list
+    k=lenlist(H);
+    curr=H->next;
+    if(pos<1||k<pos)
+    {
+        printf("Data can't be deleted");
+    }
+    else{
+        //nedd a while loop you must be thinking what must be the 
+        //condition ctr is juct for tracking the node
+        //so pos must be grater than the pos and 
+        //obviously the curr must not be null
+        while (ctr<pos && curr!=NULL){
+            ctr++;
+            //prev points to curr
+            //curr increments
+            prev=curr;
+            curr=curr->next;
+
+        }//if the condition dosent match then
+        //we have reached to the appropiate place 
+        //now take the node to the temporary variable
+        del=curr;
+        //point the prev next to the curr next address
+        prev->next=curr->next;
+        //curr-next to the null
+        curr->next=NULL;
+        free(del);
+    }
+
+    }
+//reversing the linked list now
+void rev(struct node *H){
+    //we need three pointers over here
+    struct node *curr,*prev,*future;
+    prev=NULL;
+    //we will try to link the next of the curr node to prev just to change the train
+    curr=H->next;
+    //as usual current holding to the nexxt of the head 
+    while(curr!=NULL){
+        future=curr->next;
+        curr->next=prev;
+        //now the curr next will point to null//101 to null
+        prev=curr;
+        //prev will go the curr to the same linking 
+        //tail to head linking
+        curr=future;
+    }
+    //now change the whole narrative
+    //tail to head
+    //make the prev which hold the last node and attach to head 
+    H->next=prev;
+
+}
+
+//sorting the linked list
+void sort(struct node *H)
+{
+    struct node *i,*j;
+    int tempregno;
+    char tempname[10];
+
+    for(i=H->next;i!=NULL;i=i->next)
+    {
+        for(j=i->next;j!=NULL;j=j->next)
+        {
+            if(i->regno > j->regno)
+            {
+                tempregno=i->regno;
+                i->regno=j->regno;
+                j->regno=tempregno;
+
+                strcpy(tempname,i->name);
+                strcpy(i->name,j->name);
+                strcpy(j->name,tempname);
+            }
+        }
+    }
+}
+
 
 int main()
 {
@@ -144,9 +279,27 @@ int main()
             display(head);
             break;
         case 3:
-            lenlist(head);
+           printf("Length of linked list = %d\n",lenlist(head));
+            break;
+        case 4:
+            newnode(head);
+            break;
+        case 5:
+            delnode(head);
+            break;
+        case 6:
+            rev(head);
+            break;
+        case 7:
+            sort(head);
+            printf("Linked list sorted successfully\n");
+            break;
+
+        case 8:
+        printf("Exiting...\n");
+        break;
     }
-    }while(choice!=3);
+    }while(choice!=8);
     free(head);
     return 0;
 }
