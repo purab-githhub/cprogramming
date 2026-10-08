@@ -234,23 +234,35 @@ void rev(struct node *H){
 //sorting the linked list
 void sort(struct node *H)
 {
-    struct node *i,*j;
-    int tempregno;
-    char tempname[10];
+    struct node *prev;
+    struct node *curr;
+    struct node *temp;
 
-    for(i=H->next;i!=NULL;i=i->next)
+    int len;
+    int i,j;
+
+    len=lenlist(H);
+
+    for(i=1;i<len;i++)
     {
-        for(j=i->next;j!=NULL;j=j->next)
-        {
-            if(i->regno > j->regno)
-            {
-                tempregno=i->regno;
-                i->regno=j->regno;
-                j->regno=tempregno;
+        prev=H;
+        curr=H->next;
 
-                strcpy(tempname,i->name);
-                strcpy(i->name,j->name);
-                strcpy(j->name,tempname);
+        for(j=0;j<i;j++)
+        {
+            temp=curr->next;
+
+            if(curr->regno > temp->regno)
+            {
+                prev->next=temp;
+                curr->next=temp->next;
+                temp->next=curr;
+                prev=temp;
+            }
+            else
+            {
+                prev=curr;
+                curr=curr->next;
             }
         }
     }
@@ -266,6 +278,15 @@ int main()
     head->next=NULL;
     //node size memory area for the header
     do{
+        printf("menu\n");
+        printf("1.create\n");
+        printf("2.display\n");
+        printf("3.len\n");
+        printf("4.insert\n");
+        printf("5.del\n");
+        printf("6.rev\n");
+        printf("7.sort\n");
+
     printf("enter the choice:");
     scanf("%d",&choice);
 
@@ -289,6 +310,7 @@ int main()
             break;
         case 6:
             rev(head);
+            display(head);
             break;
         case 7:
             sort(head);
