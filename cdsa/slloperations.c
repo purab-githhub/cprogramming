@@ -304,9 +304,11 @@ int main()
             break;
         case 4:
             newnode(head);
+            display(head);
             break;
         case 5:
             delnode(head);
+            display(head);
             break;
         case 6:
             rev(head);
@@ -315,6 +317,7 @@ int main()
         case 7:
             sort(head);
             printf("Linked list sorted successfully\n");
+            display(head);
             break;
 
         case 8:
