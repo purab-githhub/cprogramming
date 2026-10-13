@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/* Structure declaration */
 struct node {
     int coef;
     int exp;
@@ -10,13 +11,15 @@ struct node {
 
 typedef struct node pnode;
 
-pnode *getnode();
-pnode *create();
+/* Function declarations */
+pnode *getnode(void);
+pnode *create(void);
 void insert(pnode *head, pnode *newnode);
 void display(pnode *head);
 pnode *add_poly(pnode *H1, pnode *H2);
 
-int main() {
+/* Main function */
+int main(void) {
     pnode *H1, *H2, *H3;
 
     printf("\nEnter First Polynomial:\n");
@@ -39,30 +42,31 @@ int main() {
     return 0;
 }
 
-pnode *getnode() {
+/* Allocate memory for a node */
+pnode *getnode(void) {
     pnode *p;
 
     p = (pnode *)malloc(sizeof(pnode));
 
     if (p == NULL) {
         printf("Memory allocation failed!\n");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 
     return p;
 }
 
-/* Creation of Polynomial */
-pnode *create() {
+/* Create a polynomial */
+pnode *create(void) {
     pnode *head, *newnode;
     int i, n;
 
     head = getnode();
-    head->exp = -1;
     head->coef = 0;
+    head->exp = -1;
     head->next = head;
 
-    printf("Enter number of terms in polynomial: ");
+    printf("Enter number of terms: ");
     scanf("%d", &n);
 
     for (i = 1; i <= n; i++) {
@@ -80,7 +84,7 @@ pnode *create() {
     return head;
 }
 
-/* Insertion in Descending Order of Exponents */
+/* Insert terms in descending order of exponents */
 void insert(pnode *head, pnode *newnode) {
     pnode *p, *prev;
 
@@ -92,6 +96,7 @@ void insert(pnode *head, pnode *newnode) {
         p = p->next;
     }
 
+    /* If exponent already exists, add coefficients */
     if (p != head && p->exp == newnode->exp) {
         p->coef = p->coef + newnode->coef;
 
@@ -101,14 +106,13 @@ void insert(pnode *head, pnode *newnode) {
         }
 
         free(newnode);
-    }
-    else {
+    } else {
         newnode->next = p;
         prev->next = newnode;
     }
 }
 
-/* Display Polynomial */
+/* Display the polynomial */
 void display(pnode *head) {
     pnode *p;
 
@@ -135,35 +139,46 @@ void display(pnode *head) {
     printf("\n");
 }
 
-/* Addition of Two Polynomials */
+/* Add two polynomials */
 pnode *add_poly(pnode *H1, pnode *H2) {
     pnode *H3, *t1, *t2, *t3, *temp;
 
+    /* Create result header node */
     H3 = getnode();
-    H3->exp = -1;
     H3->coef = 0;
+    H3->exp = -1;
     H3->next = H3;
 
     t3 = H3;
     t1 = H1->next;
     t2 = H2->next;
 
-    while (t1->exp != -1 || t2->exp != -1) {
+    /* Continue until both polynomials reach their headers */
+    while (t1 != H1 || t2 != H2) {
         temp = getnode();
 
-        if (t1->exp == t2->exp) {
+        /* If both exponents are equal */
+        if (t1 != H1 && t2 != H2 &&
+            t1->exp == t2->exp) {
+
             temp->coef = t1->coef + t2->coef;
             temp->exp = t1->exp;
 
             t1 = t1->next;
             t2 = t2->next;
         }
-        else if (t1->exp < t2->exp) {
+
+        /* If exponent of P1 is smaller, copy P2's term */
+        else if (t1 == H1 ||
+                 (t2 != H2 && t1->exp < t2->exp)) {
+
             temp->coef = t2->coef;
             temp->exp = t2->exp;
 
             t2 = t2->next;
         }
+
+        /* Otherwise, copy P1's term */
         else {
             temp->coef = t1->coef;
             temp->exp = t1->exp;
@@ -171,11 +186,13 @@ pnode *add_poly(pnode *H1, pnode *H2) {
             t1 = t1->next;
         }
 
+        /* Skip zero-coefficient terms */
         if (temp->coef == 0) {
             free(temp);
             continue;
         }
 
+        /* Attach node to the resultant circular list */
         t3->next = temp;
         temp->next = H3;
         t3 = temp;
