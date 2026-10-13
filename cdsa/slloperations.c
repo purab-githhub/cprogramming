@@ -269,60 +269,7 @@ void sort(struct node *H)
 }
 
 
-int main()
-{
-    struct node *head;
-    int choice;
 
-    head=(struct node *)malloc(sizeof(struct node));
-    head->next=NULL;
-    //node size memory area for the header
-    do{
-        printf("menu\n");
-        printf("1.create\n");
-        printf("2.display\n");
-        printf("3.len\n");
-        printf("4.insert\n");
-        printf("5.del\n");
-        printf("6.rev\n");
-        printf("7.sort\n");
-
-    printf("enter the choice:");
-    scanf("%d",&choice);
-
-    switch(choice)
-    {
-        case 1:
-            create(head);
-            break;
-
-        case 2:
-            display(head);
-            break;
-        case 3:
-           printf("Length of linked list = %d\n",lenlist(head));
-            break;
-        case 4:
-            newnode(head);
-            display(head);
-            break;
-        case 5:
-            delnode(head);
-            display(head);
-            break;
-        case 6:
-            rev(head);
-            display(head);
-            break;
-        case 7:
-            sort(head);
-            printf("Linked list sorted successfully\n");
-            display(head);
-            break;
-
-        case 8:
-        printf("Exiting...\n");
-        break;
     }
     }while(choice!=8);
     free(head);
