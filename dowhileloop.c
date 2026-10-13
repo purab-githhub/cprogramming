@@ -6,7 +6,7 @@ int main(){
     scanf("%d",&num);
     do
     {
-        printf("%d*%d",num,prdt,num*prdt);
+        printf("%d",num*prdt);
         prdt++;
     } while (prdt<=12);
     return 0;
