@@ -17,10 +17,12 @@ pnode *create(void);
 void insert(pnode *head, pnode *newnode);
 void display(pnode *head);
 pnode *add_poly(pnode *H1, pnode *H2);
+void eval(pnode *H, int x);
 
 /* Main function */
 int main(void) {
     pnode *H1, *H2, *H3;
+    int x;
 
     printf("\nEnter First Polynomial:\n");
     H1 = create();
@@ -38,6 +40,13 @@ int main(void) {
 
     printf("Addition of Polynomials: ");
     display(H3);
+
+    /* Evaluate only the first polynomial */
+    printf("\nEnter the value of x: ");
+    scanf("%d", &x);
+
+    printf("Evaluation of First Polynomial:\n");
+    eval(H1, x);
 
     return 0;
 }
@@ -143,7 +152,6 @@ void display(pnode *head) {
 pnode *add_poly(pnode *H1, pnode *H2) {
     pnode *H3, *t1, *t2, *t3, *temp;
 
-    /* Create result header node */
     H3 = getnode();
     H3->coef = 0;
     H3->exp = -1;
@@ -153,11 +161,9 @@ pnode *add_poly(pnode *H1, pnode *H2) {
     t1 = H1->next;
     t2 = H2->next;
 
-    /* Continue until both polynomials reach their headers */
     while (t1 != H1 || t2 != H2) {
         temp = getnode();
 
-        /* If both exponents are equal */
         if (t1 != H1 && t2 != H2 &&
             t1->exp == t2->exp) {
 
@@ -167,8 +173,6 @@ pnode *add_poly(pnode *H1, pnode *H2) {
             t1 = t1->next;
             t2 = t2->next;
         }
-
-        /* If exponent of P1 is smaller, copy P2's term */
         else if (t1 == H1 ||
                  (t2 != H2 && t1->exp < t2->exp)) {
 
@@ -177,8 +181,6 @@ pnode *add_poly(pnode *H1, pnode *H2) {
 
             t2 = t2->next;
         }
-
-        /* Otherwise, copy P1's term */
         else {
             temp->coef = t1->coef;
             temp->exp = t1->exp;
@@ -186,13 +188,11 @@ pnode *add_poly(pnode *H1, pnode *H2) {
             t1 = t1->next;
         }
 
-        /* Skip zero-coefficient terms */
         if (temp->coef == 0) {
             free(temp);
             continue;
         }
 
-        /* Attach node to the resultant circular list */
         t3->next = temp;
         temp->next = H3;
         t3 = temp;
@@ -200,3 +200,28 @@ pnode *add_poly(pnode *H1, pnode *H2) {
 
     return H3;
 }
+
+/* Evaluate the first polynomial */
+void eval(pnode *H, int x) {
+    pnode *cur;
+    long long sum = 0;
+    long long power;
+    int i;
+
+    cur = H->next;
+
+    while (cur != H) {
+        power = 1;
+
+        for (i = 1; i <= cur->exp; i++) {
+            power = power * x;
+        }
+
+        sum = sum + cur->coef * power;
+
+        cur = cur->next;
+    }
+
+    printf("Value at x = %d is %lld\n", x, sum);
+}
+
