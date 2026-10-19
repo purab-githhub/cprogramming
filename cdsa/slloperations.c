@@ -269,7 +269,69 @@ void sort(struct node *H)
 }
 
 
+int main()
+{
+    struct node *head;
+    int choice;
 
+    head = (struct node *)malloc(sizeof(struct node));
+    head->next = NULL;
+
+    do
+    {
+        printf("\n\n--- SINGLY LINKED LIST MENU ---\n");
+        printf("1. Create linked list\n");
+        printf("2. Display linked list\n");
+        printf("3. Find length of linked list\n");
+        printf("4. Insert a new node by position\n");
+        printf("5. Delete a node by position\n");
+        printf("6. Reverse linked list\n");
+        printf("7. Sort linked list\n");
+        printf("8. Exit\n");
+
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch(choice)
+        {
+            case 1:
+                create(head);
+                break;
+
+            case 2:
+                display(head);
+                break;
+
+            case 3:
+                printf("Length of linked list is %d\n", lenlist(head));
+                break;
+
+            case 4:
+                newnode(head);
+                break;
+
+            case 5:
+                delnode(head);
+                break;
+
+            case 6:
+                rev(head);
+                printf("Linked list reversed successfully\n");
+                display(head);
+                break;
+
+            case 7:
+                sort(head);
+                printf("Linked list sorted successfully\n");
+                display(head);
+                break;
+
+            case 8:
+                printf("Exiting program...\n");
+                break;
+
+            default:
+                printf("Invalid choice. Please try again.\n");
     }
     }while(choice!=8);
     free(head);
